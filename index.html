@@ -4,19 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BioDobble Portal — Výukové karetní hry pro biochemii</title>
+  
+  <!-- Cell SVG Icon for Browser Tab (Favicon) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,5 C80,5 95,20 95,50 C95,80 80,95 50,95 C20,95 5,80 5,50 C5,20 20,5 50,5 Z' fill='%236366f1' stroke='%23ffffff' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%238b5cf6' stroke='%23ffffff' stroke-width='2'/%3E%3Ccircle cx='46' cy='46' r='8' fill='%234f46e5'/%3E%3Cellipse cx='28' cy='35' rx='6' ry='10' transform='rotate(30,28,35)' fill='%23ef4444' stroke='%23ffffff' stroke-width='1.5'/%3E%3Cellipse cx='72' cy='65' rx='6' ry='10' transform='rotate(-45,72,65)' fill='%23ef4444' stroke='%23ffffff' stroke-width='1.5'/%3E%3C/svg%3E">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --font-primary: 'Outfit', sans-serif;
+      --bg-app: #f8fafc;
+      --bg-card: rgba(255, 255, 255, 0.9);
+      --bg-card-solid: #ffffff;
+      --border-color: rgba(99, 102, 241, 0.15);
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --primary: #6366f1;
+      --accent: #8b5cf6;
+      --card-shadow: 0 10px 30px rgba(99, 102, 241, 0.05);
+    }
+    [data-theme="dark"] {
       --bg-app: #0b0f19;
       --bg-card: rgba(17, 24, 39, 0.75);
+      --bg-card-solid: #111827;
       --border-color: rgba(255, 255, 255, 0.1);
       --text-main: #f3f4f6;
       --text-muted: #9ca3af;
-      --primary: #6366f1;
-      --accent: #8b5cf6;
+      --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -26,12 +41,16 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      transition: background-color 0.3s, color 0.3s;
     }
     header {
       padding: 1.5rem 2rem;
       border-bottom: 1px solid var(--border-color);
       backdrop-filter: blur(12px);
       position: sticky; top: 0; z-index: 50;
+      background: rgba(255, 255, 255, 0.8);
+    }
+    [data-theme="dark"] header {
       background: rgba(11, 15, 25, 0.8);
     }
     .header-content {
@@ -41,16 +60,10 @@
     .brand {
       display: flex; align-items: center; gap: 0.75rem;
       font-size: 1.6rem; font-weight: 900;
-      text-decoration: none; color: white;
-    }
-    .brand-icon {
-      width: 42px; height: 42px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      border-radius: 12px; display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem;
+      text-decoration: none; color: var(--text-main);
     }
     .brand span {
-      background: linear-gradient(135deg, #818cf8, #c084fc);
+      background: linear-gradient(135deg, #4f46e5, #8b5cf6);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     main {
@@ -61,14 +74,13 @@
     }
     .hero h1 {
       font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem;
-      background: linear-gradient(135deg, #ffffff, #94a3b8);
+      background: linear-gradient(135deg, var(--text-main), var(--text-muted));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     .hero p {
       font-size: 1.25rem; color: var(--text-muted); max-width: 750px; margin: 0 auto 2rem; line-height: 1.6;
     }
     
-    /* Project Tiles Grid */
     .portal-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
       gap: 1.75rem; margin-bottom: 4rem;
@@ -81,6 +93,7 @@
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative; overflow: hidden;
       text-decoration: none; color: inherit;
+      box-shadow: var(--card-shadow);
     }
     .project-card:hover {
       transform: translateY(-6px);
@@ -100,7 +113,7 @@
       margin-bottom: 1.25rem; font-size: 2rem; color: var(--card-color);
     }
     .card-title {
-      font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem; color: #fff;
+      font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main);
     }
     .card-desc {
       font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.5rem; flex: 1;
@@ -109,34 +122,37 @@
       display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;
     }
     .spec-pill {
+      background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05);
+      padding: 4px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; color: var(--text-muted);
+    }
+    [data-theme="dark"] .spec-pill {
       background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
-      padding: 4px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; color: #cbd5e1;
+      color: #cbd5e1;
     }
     .card-action {
       display: flex; align-items: center; justify-content: space-between;
       font-weight: 700; font-size: 1rem; color: var(--card-color);
     }
 
-    /* Color themes for cards */
     .card-amino {
-      --card-color: #818cf8;
-      --card-shadow-color: rgba(99, 102, 241, 0.4);
-      --card-bg-light: rgba(99, 102, 241, 0.12);
+      --card-color: #4f46e5;
+      --card-shadow-color: rgba(99, 102, 241, 0.3);
+      --card-bg-light: rgba(99, 102, 241, 0.1);
     }
     .card-glyco {
-      --card-color: #34d399;
-      --card-shadow-color: rgba(16, 185, 129, 0.4);
-      --card-bg-light: rgba(16, 185, 129, 0.12);
+      --card-color: #059669;
+      --card-shadow-color: rgba(16, 185, 129, 0.3);
+      --card-bg-light: rgba(16, 185, 129, 0.1);
     }
     .card-lipido {
-      --card-color: #fbbf24;
-      --card-shadow-color: rgba(245, 158, 11, 0.4);
-      --card-bg-light: rgba(245, 158, 11, 0.12);
+      --card-color: #d97706;
+      --card-shadow-color: rgba(245, 158, 11, 0.3);
+      --card-bg-light: rgba(245, 158, 11, 0.1);
     }
     .card-na {
-      --card-color: #22d3ee;
-      --card-shadow-color: rgba(6, 182, 212, 0.4);
-      --card-bg-light: rgba(6, 182, 212, 0.12);
+      --card-color: #0891b2;
+      --card-shadow-color: rgba(6, 182, 212, 0.3);
+      --card-bg-light: rgba(6, 182, 212, 0.1);
     }
 
     footer {
@@ -153,114 +169,115 @@
       <a href="#" class="brand">
         <div class="brand-icon" style="background: none; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;">
           <svg width="36" height="36" viewBox="0 0 100 100">
-            <!-- Cell Membrane -->
             <path d="M 50,5 C 80,5 95,20 95,50 C 95,80 80,95 50,95 C 20,95 5,80 5,50 C 5,20 20,5 50,5 Z" fill="url(#cellGrad)" stroke="#ffffff" stroke-width="3" />
-            <!-- Nucleus -->
             <circle cx="50" cy="50" r="20" fill="#8b5cf6" stroke="#ffffff" stroke-width="2" opacity="0.9" />
-            <!-- Nucleolus -->
             <circle cx="46" cy="46" r="8" fill="#4f46e5" opacity="0.9" />
-            <!-- Mitochondria -->
             <ellipse cx="28" cy="35" rx="6" ry="10" transform="rotate(30 28 35)" fill="#ef4444" stroke="#ffffff" stroke-width="1.5" />
             <ellipse cx="72" cy="65" rx="6" ry="10" transform="rotate(-45 72 65)" fill="#ef4444" stroke="#ffffff" stroke-width="1.5" />
             <circle cx="35" cy="70" r="4" fill="#fbbf24" />
             <circle cx="70" cy="30" r="4" fill="#fbbf24" />
-            
             <defs>
               <linearGradient id="cellGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#6366f1" />
-                <stop offset="100%" stop-color="#4f46e5" />
+                <stop offset="0%" stop-color="#6366f1" stop-opacity="1" />
+                <stop offset="100%" stop-color="#4f46e5" stop-opacity="1" />
               </linearGradient>
             </defs>
           </svg>
         </div>
         <span>BioDobble Portal</span>
       </a>
+
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <select id="lang-toggle" style="background: var(--bg-card-solid); border: 1px solid var(--border-color); color: var(--text-main); font-family: var(--font-primary); font-weight: 700; font-size: 0.85rem; border-radius: 10px; padding: 6px 10px; cursor: pointer;">
+          <option value="cs">CZ</option>
+          <option value="en">EN</option>
+          <option value="de">DE</option>
+          <option value="fr">FR</option>
+        </select>
+        <button id="theme-toggle" style="background: none; border: 1px solid var(--border-color); padding: 6px 10px; border-radius: 10px; cursor: pointer; color: var(--text-main); font-size: 1rem;">🌓</button>
+      </div>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <h1>Interaktivní výukové hry BioDobble</h1>
-      <p>Vítejte v biochemickém portálu výukových karet Dobble. Zvolte si svou oblíbenou oblast biochemie a procvičte si poznávání molekul, struktur a názvů zábavnou formou.</p>
+      <h1 data-translate="hero_title">Výukové hry BioDobble</h1>
+      <p data-translate="hero_desc">Vítejte v biochemickém portálu výukových karet Dobble. Zvolte si svou oblíbenou oblast biochemie a procvičte si poznávání molekul, struktur a názvů zábavnou formou.</p>
     </section>
 
     <div class="portal-grid">
       
       <!-- Amino Acid Dobble -->
       <a href="../amino-acid-dobble/index.html" class="project-card card-amino">
-        <span class="card-badge">Proteiny & Aminokyseliny</span>
+        <span class="card-badge" data-translate="badge_amino">Proteiny & Aminokyseliny</span>
         <div class="card-icon-wrapper">
-          <!-- Protein Ribbon SVG -->
           <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12c2-4 4-6 6-6s4 4 6 4 4-2 4-6"></path><path d="M4 18c2-4 4-6 6-6s4 4 6 4 4-2 4-6"></path></svg>
         </div>
         <h2 class="card-title">AA-Dobble</h2>
-        <p class="card-desc">Biogenní aminokyseliny, strukturní vzorce, 3-písmenné a 1-písmenné zkratky a vlastnosti postranních řetězců.</p>
+        <p class="card-desc" data-translate="desc_amino">Biogenní aminokyseliny, strukturní vzorce, 3-písmenné a 1-písmenné zkratky a vlastnosti postranních řetězců.</p>
         <div class="card-specs">
-          <span class="spec-pill">Řád q = 4</span>
-          <span class="spec-pill">21 molekul</span>
-          <span class="spec-pill">5 symbolů / karta</span>
+          <span class="spec-pill">q = 4</span>
+          <span class="spec-pill" data-translate="spec_21">21 molekul</span>
+          <span class="spec-pill" data-translate="spec_5sym">5 symbolů / karta</span>
         </div>
         <div class="card-action">
-          <span>Otevřít hru</span>
+          <span data-translate="play_btn">Otevřít hru</span>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </div>
       </a>
 
       <!-- Glyco Dobble -->
       <a href="../glyco-dobble/index.html" class="project-card card-glyco">
-        <span class="card-badge">Glykonomika & Cukry</span>
+        <span class="card-badge" data-translate="badge_glyco">Glykonomika & Cukry</span>
         <div class="card-icon-wrapper">
-          <!-- SNFG Hexagon SVG -->
           <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 21 7 21 17 12 22 3 17 3 7"></polygon></svg>
         </div>
         <h2 class="card-title">Glyco-Dobble</h2>
-        <p class="card-desc">Monosacharidy, disacharidy, aminocukry a oficiální barevné SNFG glykomické symboly.</p>
+        <p class="card-desc" data-translate="desc_glyco">Monosacharidy, disacharidy, aminocukry a oficiální barevné SNFG glykomické symboly.</p>
         <div class="card-specs">
-          <span class="spec-pill">3 verze (q = 3, 4, 7)</span>
-          <span class="spec-pill">13 / 21 / 57 symbolů</span>
-          <span class="spec-pill">SNFG symbolika</span>
+          <span class="spec-pill" data-translate="spec_3ver">3 verze (q = 3, 4, 7)</span>
+          <span class="spec-pill" data-translate="spec_57sym">13 / 21 / 57 symbolů</span>
+          <span class="spec-pill" data-translate="spec_snfg">SNFG symbolika</span>
         </div>
         <div class="card-action">
-          <span>Otevřít hru</span>
+          <span data-translate="play_btn">Otevřít hru</span>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </div>
       </a>
 
       <!-- Lipido Dobble -->
       <a href="../lipido-dobble/index.html" class="project-card card-lipido">
-        <span class="card-badge">Lipidomika & Tuky</span>
+        <span class="card-badge" data-translate="badge_lipido">Lipidomika & Tuky</span>
         <div class="card-icon-wrapper">
-          <!-- Cholesterol SVG -->
           <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 14l3-5h4l2 3h4l2-4h3"></path><circle cx="6" cy="16" r="2"></circle><circle cx="18" cy="16" r="2"></circle></svg>
         </div>
         <h2 class="card-title">Lipido-Dobble</h2>
-        <p class="card-desc">Mastné kyseliny, glycerofosfolipidy, sfingolipidy, steroly a hmotnostně-spektrometrické lipidomické druhy.</p>
+        <p class="card-desc" data-translate="desc_lipido">Mastné kyseliny, glycerofosfolipidy, sfingolipidy, steroly a hmotnostně-spektrometrické lipidomické druhy.</p>
         <div class="card-specs">
-          <span class="spec-pill">4 verze (q = 3, 5, 7, 8)</span>
-          <span class="spec-pill">Až 73 lipidů</span>
+          <span class="spec-pill" data-translate="spec_4ver">4 verze (q = 3, 5, 7, 8)</span>
+          <span class="spec-pill" data-translate="spec_73sym">Až 73 lipidů</span>
           <span class="spec-pill">Mass Spec Nightmare</span>
         </div>
         <div class="card-action">
-          <span>Otevřít hru</span>
+          <span data-translate="play_btn">Otevřít hru</span>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </div>
       </a>
 
       <!-- Nucleic Acid Dobble -->
       <a href="../nucleic-acid-dobble/index.html" class="project-card card-na">
-        <span class="card-badge">Nukleové Kyseliny</span>
+        <span class="card-badge" data-translate="badge_na">Nukleové Kyseliny</span>
         <div class="card-icon-wrapper">
-          <!-- DNA Helix SVG -->
           <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4c0 8.8 16 7.2 16 16"></path><path d="M20 4c0 8.8-16 7.2-16 16"></path><line x1="7" y1="8" x2="17" y2="8"></line><line x1="5.5" y1="12" x2="18.5" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>
         </div>
         <h2 class="card-title">NA-Dobble</h2>
-        <p class="card-desc">Nukleové báze (A, T, U, C, G), cukry, nukleosidy, energetické nukleotidy (ATP, GTP, cAMP) a speciální tRNA báze.</p>
+        <p class="card-desc" data-translate="desc_na">Nukleové báze (A, T, U, C, G), cukry, nukleosidy, energetické nukleotidy (ATP, GTP, cAMP) a speciální tRNA báze.</p>
         <div class="card-specs">
-          <span class="spec-pill">Mini (q = 2, 7 sym)</span>
-          <span class="spec-pill">Plná (q = 4, 21 sym)</span>
+          <span class="spec-pill" data-translate="spec_mini">Mini (q = 2, 7 sym)</span>
+          <span class="spec-pill" data-translate="spec_full">Plná (q = 4, 21 sym)</span>
         </div>
         <div class="card-action">
-          <span>Otevřít hru</span>
+          <span data-translate="play_btn">Otevřít hru</span>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </div>
       </a>
@@ -268,9 +285,142 @@
     </div>
   </main>
 
-  <footer>
+  <footer id="footer-text">
     <p>&copy; 2026 BioDobble Portal. Autor: <a href="https://karelberka.github.io" target="_blank" rel="noopener">Karel Berka</a>. Vytvořeno pro výuku biochemie.</p>
   </footer>
 
+  <script>
+    const TRANSLATIONS = {
+      cs: {
+        hero_title: "Výukové hry BioDobble",
+        hero_desc: "Vítejte v biochemickém portálu výukových karet Dobble. Zvolte si svou oblíbenou oblast biochemie a procvičte si poznávání molekul, struktur a názvů zábavnou formou.",
+        badge_amino: "Proteiny & Aminokyseliny",
+        desc_amino: "Biogenní aminokyseliny, strukturní vzorce, 3-písmenné a 1-písmenné zkratky a vlastnosti postranních řetězců.",
+        badge_glyco: "Glykonomika & Cukry",
+        desc_glyco: "Monosacharidy, disacharidy, aminocukry a oficiální barevné SNFG glykomické symboly.",
+        badge_lipido: "Lipidomika & Tuky",
+        desc_lipido: "Mastné kyseliny, glycerofosfolipidy, sfingolipidy, steroly a hmotnostně-spektrometrické lipidomické druhy.",
+        badge_na: "Nukleové Kyseliny",
+        desc_na: "Nukleové báze (A, T, U, C, G), cukry, nukleosidy, energetické nukleotidy (ATP, GTP, cAMP) a speciální tRNA báze.",
+        play_btn: "Otevřít hru",
+        spec_21: "21 molekul",
+        spec_5sym: "5 symbolů / karta",
+        spec_3ver: "3 verze (q = 3, 4, 7)",
+        spec_57sym: "13 / 21 / 57 symbolů",
+        spec_snfg: "SNFG symbolika",
+        spec_4ver: "4 verze (q = 3, 5, 7, 8)",
+        spec_73sym: "Až 73 lipidů",
+        spec_mini: "Mini (q = 2, 7 sym)",
+        spec_full: "Plná (q = 4, 21 sym)",
+        footer: '<p>&copy; 2026 BioDobble Portal. Autor: <a href="https://karelberka.github.io" target="_blank" rel="noopener">Karel Berka</a>. Vytvořeno pro výuku biochemie.</p>'
+      },
+      en: {
+        hero_title: "BioDobble Learning Games",
+        hero_desc: "Welcome to the biochemical portal of Dobble learning cards. Choose your preferred field of biochemistry and practice recognizing molecules, structures, and names in a fun way.",
+        badge_amino: "Proteins & Amino Acids",
+        desc_amino: "Biogenic amino acids, structural formulas, 3-letter and 1-letter abbreviations, and side chain properties.",
+        badge_glyco: "Glycomics & Sugars",
+        desc_glyco: "Monosaccharides, disaccharides, amino sugars, and official colorful SNFG glycomic symbols.",
+        badge_lipido: "Lipidomics & Fats",
+        desc_lipido: "Fatty acids, glycerophospholipids, sphingolipids, sterols, and mass-spectrometric lipid species.",
+        badge_na: "Nucleic Acids",
+        desc_na: "Nucleic bases (A, T, U, C, G), sugars, nucleosides, energetic nucleotides (ATP, GTP, cAMP), and special tRNA bases.",
+        play_btn: "Open Game",
+        spec_21: "21 molecules",
+        spec_5sym: "5 symbols / card",
+        spec_3ver: "3 versions (q = 3, 4, 7)",
+        spec_57sym: "13 / 21 / 57 symbols",
+        spec_snfg: "SNFG symbols",
+        spec_4ver: "4 versions (q = 3, 5, 7, 8)",
+        spec_73sym: "Up to 73 lipids",
+        spec_mini: "Mini (q = 2, 7 sym)",
+        spec_full: "Full (q = 4, 21 sym)",
+        footer: '<p>&copy; 2026 BioDobble Portal. Author: <a href="https://karelberka.github.io" target="_blank" rel="noopener">Karel Berka</a>. Built for biochemistry education.</p>'
+      },
+      de: {
+        hero_title: "BioDobble Lernspiele",
+        hero_desc: "Willkommen im biochemischen Portal der Dobble-Lernkarten. Wählen Sie Ihr bevorzugtes Fachgebiet der Biochemie und üben Sie spielerisch das Erkennen von Molekülen, Strukturen und Namen.",
+        badge_amino: "Proteine & Aminosäuren",
+        desc_amino: "Biogene Aminosäuren, Strukturformeln, 3-Buchstaben- und 1-Buchstaben-Abkürzungen sowie Seitenketteneigenschaften.",
+        badge_glyco: "Glykomik & Zucker",
+        desc_glyco: "Monosaccharide, Disaccharide, Aminozucker und offizielle farbige SNFG-Glykomsymbole.",
+        badge_lipido: "Lipidomik & Fette",
+        desc_lipido: "Fettsäuren, Glycerophospholipide, Sphingolipide, Sterole und massenspektrometrische Lipidspezies.",
+        badge_na: "Nukleinsäuren",
+        desc_na: "Nukleinsäuren-Basen (A, T, U, C, G), Zucker, Nukleoside, energetische Nukleotide (ATP, GTP, cAMP) und spezielle tRNA-Basen.",
+        play_btn: "Spiel öffnen",
+        spec_21: "21 Moleküle",
+        spec_5sym: "5 Symbole / Karte",
+        spec_3ver: "3 Versionen (q = 3, 4, 7)",
+        spec_57sym: "13 / 21 / 57 Symbole",
+        spec_snfg: "SNFG-Symbole",
+        spec_4ver: "4 Versionen (q = 3, 5, 7, 8)",
+        spec_73sym: "Bis zu 73 Lipide",
+        spec_mini: "Mini (q = 2, 7 Sym)",
+        spec_full: "Voll (q = 4, 21 Sym)",
+        footer: '<p>&copy; 2026 BioDobble Portal. Autor: <a href="https://karelberka.github.io" target="_blank" rel="noopener">Karel Berka</a>.</p>'
+      },
+      fr: {
+        hero_title: "Jeux d'apprentissage BioDobble",
+        hero_desc: "Bienvenue sur le portail biochimique des cartes d'apprentissage Dobble. Choisissez votre domaine de biochimie et entraînez-vous à reconnaître les molécules, structures et noms de manière ludique.",
+        badge_amino: "Protéines & Acides Aminés",
+        desc_amino: "Acides aminés biogènes, formules structurales, abréviations à 3 et 1 lettres, et propriétés des chaînes latérales.",
+        badge_glyco: "Glycomique & Sucres",
+        desc_glyco: "Monosaccharides, disaccharides, sucres aminés et symboles officiels colorés SNFG.",
+        badge_lipido: "Lipidomique & Lipides",
+        desc_lipido: "Acides gras, glycérophospholipides, sphingolipides, stérols et espèces lipidiques de spectrométrie de masse.",
+        badge_na: "Acides Nucléiques",
+        desc_na: "Bases nucléiques (A, T, U, C, G), sucres, nucléosides, nucléotides énergétiques (ATP, GTP, cAMP) et bases spécialisées d'ARNt.",
+        play_btn: "Ouvrir le jeu",
+        spec_21: "21 symbole",
+        spec_5sym: "5 symboles / carte",
+        spec_3ver: "3 versions (q = 3, 4, 7)",
+        spec_57sym: "13 / 21 / 57 symboles",
+        spec_snfg: "Symboles SNFG",
+        spec_4ver: "4 versions (q = 3, 5, 7, 8)",
+        spec_73sym: "Jusqu'à 73 lipides",
+        spec_mini: "Mini (q = 2, 7 sym)",
+        spec_full: "Plein (q = 4, 21 sym)",
+        footer: '<p>&copy; 2026 BioDobble Portal. Auteur: <a href="https://karelberka.github.io" target="_blank" rel="noopener">Karel Berka</a>.</p>'
+      }
+    };
+
+    let currentLang = localStorage.getItem("biodobble_portal_lang") || "cs";
+
+    function translatePage() {
+      const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+      document.querySelectorAll("[data-translate]").forEach(el => {
+        const key = el.getAttribute("data-translate");
+        if (dict[key]) el.innerHTML = dict[key];
+      });
+      const footerEl = document.getElementById("footer-text");
+      if (footerEl && dict.footer) footerEl.innerHTML = dict.footer;
+    }
+
+    // Language Toggle
+    const langSelect = document.getElementById("lang-toggle");
+    langSelect.value = currentLang;
+    langSelect.addEventListener("change", () => {
+      currentLang = langSelect.value;
+      localStorage.setItem("biodobble_portal_lang", currentLang);
+      translatePage();
+    });
+
+    // Theme Toggle
+    const themeBtn = document.getElementById("theme-toggle");
+    themeBtn.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("biodobble_portal_theme", newTheme);
+    });
+
+    // Load Saved Theme
+    const savedTheme = localStorage.getItem("biodobble_portal_theme") || "light";
+    document.documentElement.setAttribute("data-theme", savedTheme);
+
+    // Initial Translation
+    translatePage();
+  </script>
 </body>
 </html>
