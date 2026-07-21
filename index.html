@@ -151,7 +151,28 @@
   <header>
     <div class="header-content">
       <a href="#" class="brand">
-        <div class="brand-icon">🧬</div>
+        <div class="brand-icon" style="background: none; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;">
+          <svg width="36" height="36" viewBox="0 0 100 100">
+            <!-- Cell Membrane -->
+            <path d="M 50,5 C 80,5 95,20 95,50 C 95,80 80,95 50,95 C 20,95 5,80 5,50 C 5,20 20,5 50,5 Z" fill="url(#cellGrad)" stroke="#ffffff" stroke-width="3" />
+            <!-- Nucleus -->
+            <circle cx="50" cy="50" r="20" fill="#8b5cf6" stroke="#ffffff" stroke-width="2" opacity="0.9" />
+            <!-- Nucleolus -->
+            <circle cx="46" cy="46" r="8" fill="#4f46e5" opacity="0.9" />
+            <!-- Mitochondria -->
+            <ellipse cx="28" cy="35" rx="6" ry="10" transform="rotate(30 28 35)" fill="#ef4444" stroke="#ffffff" stroke-width="1.5" />
+            <ellipse cx="72" cy="65" rx="6" ry="10" transform="rotate(-45 72 65)" fill="#ef4444" stroke="#ffffff" stroke-width="1.5" />
+            <circle cx="35" cy="70" r="4" fill="#fbbf24" />
+            <circle cx="70" cy="30" r="4" fill="#fbbf24" />
+            
+            <defs>
+              <linearGradient id="cellGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6366f1" />
+                <stop offset="100%" stop-color="#4f46e5" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
         <span>BioDobble Portal</span>
       </a>
     </div>
