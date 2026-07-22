@@ -82,8 +82,11 @@
     }
     
     .portal-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      display: grid; grid-template-columns: repeat(2, 1fr);
       gap: 1.75rem; margin-bottom: 4rem;
+    }
+    @media (max-width: 640px) {
+      .portal-grid { grid-template-columns: 1fr; }
     }
     .project-card {
       background: var(--bg-card);
