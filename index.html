@@ -294,6 +294,43 @@
       </a>
 
     </div>
+
+    <!-- Overview of All Game Datasets -->
+    <section class="datasets-overview" style="margin-top: 2rem;">
+      <h2 style="font-size: 1.8rem; font-weight: 900; text-align: center; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--text-main), var(--text-muted)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" data-translate="overview_title">Přehled výukových datasetů a verzí</h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+        
+        <!-- AA-Dobble -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.5rem; box-shadow: var(--card-shadow); border-top: 4px solid #4f46e5;">
+          <h3 style="font-size: 1.2rem; font-weight: 800; color: #4f46e5; margin-bottom: 0.5rem;">AA-Dobble</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.45; margin-bottom: 0.75rem;" data-translate="ds_amino_desc">Kompletní sada 21 biogenních aminokyselin (20 standardních + Selenocystein). Párování 1-písmenných a 3-písmenných zkratek, vzorců a názvů.</p>
+          <span style="font-size: 0.8rem; font-weight: 700; padding: 4px 10px; border-radius: 8px; background: rgba(79, 70, 229, 0.1); color: #4f46e5;">q = 4 (21 symbolů)</span>
+        </div>
+
+        <!-- Glyco-Dobble -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.5rem; box-shadow: var(--card-shadow); border-top: 4px solid #059669;">
+          <h3 style="font-size: 1.2rem; font-weight: 800; color: #059669; margin-bottom: 0.5rem;">Glyco-Dobble</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.45; margin-bottom: 0.75rem;" data-translate="ds_glyco_desc">3 verze výukových sad od základních monosacharidů (q=3: 13 cukrů) až po kompletní oficiální SNFG Atlas (q=7: 57 cukrů).</p>
+          <span style="font-size: 0.8rem; font-weight: 700; padding: 4px 10px; border-radius: 8px; background: rgba(5, 150, 105, 0.1); color: #059669;">3 verze (13 / 21 / 57 cukrů)</span>
+        </div>
+
+        <!-- Lipido-Dobble -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.5rem; box-shadow: var(--card-shadow); border-top: 4px solid #d97706;">
+          <h3 style="font-size: 1.2rem; font-weight: 800; color: #d97706; margin-bottom: 0.5rem;">Lipido-Dobble</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.45; margin-bottom: 0.75rem;" data-translate="ds_lipido_desc">4 verze sady (Membrána, Signalizace, LIPID MAPS Atlas, Mass Spec Nightmare) pro 13 až 73 molekulárních lipidových druhů.</p>
+          <span style="font-size: 0.8rem; font-weight: 700; padding: 4px 10px; border-radius: 8px; background: rgba(217, 119, 6, 0.1); color: #d97706;">4 verze (13 / 31 / 57 / 73 lipidů)</span>
+        </div>
+
+        <!-- NA-Dobble -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.5rem; box-shadow: var(--card-shadow); border-top: 4px solid #0891b2;">
+          <h3 style="font-size: 1.2rem; font-weight: 800; color: #0891b2; margin-bottom: 0.5rem;">NA-Dobble</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.45; margin-bottom: 0.75rem;" data-translate="ds_na_desc">Rychlá Mini sada (q=2: 7 bází a cukrů) i plná verze (q=4: 21 symbolů pro báze, nukleosidy, energetické nukleotidy ATP/GTP a tRNA báze).</p>
+          <span style="font-size: 0.8rem; font-weight: 700; padding: 4px 10px; border-radius: 8px; background: rgba(8, 145, 178, 0.1); color: #0891b2;">2 verze (7 / 21 symbolů)</span>
+        </div>
+
+      </div>
+    </section>
   </main>
 
   <footer id="footer-text">
@@ -305,6 +342,11 @@
       cs: {
         hero_title: "Výukové hry BioDobble",
         hero_desc: "Vítejte v biochemickém portálu výukových karet Dobble. Zvolte si svou oblíbenou oblast biochemie a procvičte si poznávání molekul, struktur a názvů zábavnou formou.",
+        overview_title: "Přehled výukových datasetů a verzí",
+        ds_amino_desc: "Kompletní sada 21 biogenních aminokyselin (20 standardních + Selenocystein). Párování 1-písmenných a 3-písmenných zkratek, vzorců a názvů.",
+        ds_glyco_desc: "3 verze výukových sad od základních monosacharidů (q=3: 13 cukrů) až po kompletní oficiální SNFG Atlas (q=7: 57 cukrů).",
+        ds_lipido_desc: "4 verze sady (Membrána, Signalizace, LIPID MAPS Atlas, Mass Spec Nightmare) pro 13 až 73 molekulárních lipidových druhů.",
+        ds_na_desc: "Rychlá Mini sada (q=2: 7 bází a cukrů) i plná verze (q=4: 21 symbolů pro báze, nukleosidy, energetické nukleotidy ATP/GTP a tRNA báze).",
         badge_amino: "Proteiny & Aminokyseliny",
         desc_amino: "Biogenní aminokyseliny, strukturní vzorce, 3-písmenné a 1-písmenné zkratky a vlastnosti postranních řetězců.",
         badge_glyco: "Glykonomika & Cukry",
@@ -328,6 +370,11 @@
       en: {
         hero_title: "BioDobble Learning Games",
         hero_desc: "Welcome to the biochemical portal of Dobble learning cards. Choose your preferred field of biochemistry and practice recognizing molecules, structures, and names in a fun way.",
+        overview_title: "Overview of Educational Datasets & Decks",
+        ds_amino_desc: "Complete deck of 21 biogenic amino acids (20 standard + Selenocysteine). Matching 1-letter and 3-letter codes, formulas, and names.",
+        ds_glyco_desc: "3 deck versions ranging from basic monosaccharides (q=3: 13 sugars) up to the complete official SNFG Atlas (q=7: 57 sugars).",
+        ds_lipido_desc: "4 deck versions (Membrane, Signaling, LIPID MAPS Atlas, Mass Spec Nightmare) covering 13 to 73 molecular lipid species.",
+        ds_na_desc: "Quick Mini deck (q=2: 7 bases & sugars) and Full deck (q=4: 21 symbols for bases, nucleosides, ATP/GTP nucleotides, and tRNA bases).",
         badge_amino: "Proteins & Amino Acids",
         desc_amino: "Biogenic amino acids, structural formulas, 3-letter and 1-letter abbreviations, and side chain properties.",
         badge_glyco: "Glycomics & Sugars",
@@ -351,6 +398,11 @@
       de: {
         hero_title: "BioDobble Lernspiele",
         hero_desc: "Willkommen im biochemischen Portal der Dobble-Lernkarten. Wählen Sie Ihr bevorzugtes Fachgebiet der Biochemie und üben Sie spielerisch das Erkennen von Molekülen, Strukturen und Namen.",
+        overview_title: "Übersicht der Datensätze & Spielversionen",
+        ds_amino_desc: "Vollständiger Satz aus 21 biogenen Aminosäuren. Zuordnung von 1- und 3-Buchstaben-Codes, Formeln und Namen.",
+        ds_glyco_desc: "3 Spielversionen von einfachen Monosacchariden (q=3: 13 Zucker) bis zum offiziellen SNFG-Atlas (q=7: 57 Zucker).",
+        ds_lipido_desc: "4 Spielversionen (Membran, Signalwege, LIPID MAPS Atlas, Mass Spec Nightmare) für 13 bis 73 Lipidspezies.",
+        ds_na_desc: "Schnelles Mini-Deck (q=2: 7 Basen & Zucker) und Vollversion (q=4: 21 Symbole für Basen, Nukleoside, ATP/GTP und tRNA-Basen).",
         badge_amino: "Proteine & Aminosäuren",
         desc_amino: "Biogene Aminosäuren, Strukturformeln, 3-Buchstaben- und 1-Buchstaben-Abkürzungen sowie Seitenketteneigenschaften.",
         badge_glyco: "Glykomik & Zucker",
@@ -374,14 +426,11 @@
       fr: {
         hero_title: "Jeux d'apprentissage BioDobble",
         hero_desc: "Bienvenue sur le portail biochimique des cartes d'apprentissage Dobble. Choisissez votre domaine de biochimie et entraînez-vous à reconnaître les molécules, structures et noms de manière ludique.",
-        badge_amino: "Protéines & Acides Aminés",
-        desc_amino: "Acides aminés biogènes, formules structurales, abréviations à 3 et 1 lettres, et propriétés des chaînes latérales.",
-        badge_glyco: "Glycomique & Sucres",
-        desc_glyco: "Monosaccharides, disaccharides, sucres aminés et symboles officiels colorés SNFG.",
-        badge_lipido: "Lipidomique & Lipides",
-        desc_lipido: "Acides gras, glycérophospholipides, sphingolipides, stérols et espèces lipidiques de spectrométrie de masse.",
-        badge_na: "Acides Nucléiques",
-        desc_na: "Bases nucléiques (A, T, U, C, G), sucres, nucléosides, nucléotides énergétiques (ATP, GTP, cAMP) et bases spécialisées d'ARNt.",
+        overview_title: "Aperçu des jeux de données et versions",
+        ds_amino_desc: "Jeu complet de 21 acides aminés biogènes. Association des codes à 1 et 3 lettres, formules et noms.",
+        ds_glyco_desc: "3 versions allant des monosaccharides de base (q=3 : 13 sucres) jusqu'à l'Atlas SNFG officiel (q=7 : 57 sucres).",
+        ds_lipido_desc: "4 versions (Membrane, Signalisation, LIPID MAPS Atlas, Mass Spec Nightmare) couvrant 13 à 73 espèces lipidiques.",
+        ds_na_desc: "Jeu Mini rapide (q=2 : 7 bases et sucres) et version complète (q=4 : 21 symboles pour bases, nucléosides, ATP/GTP et bases d'ARNt).",
         play_btn: "Ouvrir le jeu",
         spec_21: "21 symbole",
         spec_5sym: "5 symboles / carte",
